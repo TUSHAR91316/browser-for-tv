@@ -10,4 +10,10 @@ A minimalist, high-performance web browser designed specifically for Android TV.
 - **Fluent Process**: Hardware-accelerated and optimized for smooth scrolling and fast page loads.
 
 ## Development Setup
-*(To be added after project initialization)*
+1. Clone the repository and open the project in Android Studio.
+2. The project uses **Jetpack Compose** for the UI overlay and `AndroidView` for the core `WebView`.
+3. To build and run from the command line:
+   ```bash
+   ./gradlew assembleDebug
+   ```
+4. Deploy the generated APK (`app/build/outputs/apk/debug/app-debug.apk`) to an Android TV emulator (API 26+) or a physical device.
