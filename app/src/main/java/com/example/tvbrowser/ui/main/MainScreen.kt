@@ -81,9 +81,27 @@ fun MainScreen(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT
                     )
-                    settings.javaScriptEnabled = true
-                    settings.domStorageEnabled = true
-                    settings.setSupportZoom(true)
+                    
+                    // Hardware Acceleration & Performance
+                    setLayerType(android.view.View.LAYER_TYPE_HARDWARE, null)
+                    
+                    settings.apply {
+                        javaScriptEnabled = true
+                        domStorageEnabled = true
+                        
+                        // Disable zoom since TV remotes don't use pinch-to-zoom
+                        setSupportZoom(false)
+                        builtInZoomControls = false
+                        displayZoomControls = false
+                        
+                        // Security & Resource Optimization
+                        allowFileAccess = false
+                        allowContentAccess = false
+                        setGeolocationEnabled(false)
+                        
+                        // Caching Strategy for faster load but low memory
+                        cacheMode = android.webkit.WebSettings.LOAD_DEFAULT
+                    }
                     
                     webViewClient = object : WebViewClient() {
                         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
